@@ -33,6 +33,10 @@
 #define _CRT_SECURE_NO_DEPRECATE 1
 #endif
 
+#if defined(_MBED_)
+#include "config_feature_groups.h"
+#endif
+
 /**
  * \name SECTION: System support
  *
