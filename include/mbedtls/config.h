@@ -2734,6 +2734,10 @@
 #include MBEDTLS_USER_CONFIG_FILE
 #endif
 
+#if defined(_MBED_)
+#include "check_target_capabilities.h"
+#endif
+
 #include "check_config.h"
 
 #endif /* MBEDTLS_CONFIG_H */
