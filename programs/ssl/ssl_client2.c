@@ -2067,18 +2067,16 @@ exit:
     mbedtls_ssl_config_free( &conf );
     mbedtls_ctr_drbg_free( &ctr_drbg );
     mbedtls_entropy_free( &entropy );
-
-#if defined(_WIN32)
-    mbedtls_printf( "  + Press Enter to exit this program.\n" );
-    fflush( stdout ); getchar();
-#endif
-
     // Shell can not handle large exit numbers -> 1 for errors
     if( ret < 0 )
         ret = 1;
 
 #if defined(MBEDTLS_PLATFORM_C)
     mbedtls_platform_teardown( &platform_ctx );
+#endif
+#if defined(_WIN32)
+    mbedtls_printf( "  + Press Enter to exit this program.\n" );
+    fflush( stdout ); getchar();
 #endif
 
     return( ret );
