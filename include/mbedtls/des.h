@@ -41,10 +41,19 @@
 #define MBEDTLS_DES_ENCRYPT     1
 #define MBEDTLS_DES_DECRYPT     0
 
+#define MBEDTLS_ERR_DES_BAD_INPUT_DATA                    -0x001F  /**< Invalid input arguments. */
 #define MBEDTLS_ERR_DES_INVALID_INPUT_LENGTH              -0x0032  /**< The data input has an invalid length. */
 #define MBEDTLS_ERR_DES_HW_ACCEL_FAILED                   -0x0033  /**< DES hardware accelerator failed. */
 
 #define MBEDTLS_DES_KEY_SIZE    8
+
+#if defined( MBEDTLS_CHECK_PARAMS )
+#define MBEDTLS_DES_VALIDATE( cond )   do { if( !(cond) ) \
+                                           return( MBEDTLS_ERR_DES_BAD_INPUT_DATA ); \
+                                       } while( 0 )
+#else
+#define MBEDTLS_DES_VALIDATE( cond )
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -80,6 +89,13 @@ mbedtls_des3_context;
 #include "des_alt.h"
 #endif /* MBEDTLS_DES_ALT */
 
+#if !defined(MBEDTLS_DEPRECATED_REMOVED)
+#if defined(MBEDTLS_DEPRECATED_WARNING)
+#define MBEDTLS_DEPRECATED      __attribute__((deprecated))
+#else
+#define MBEDTLS_DEPRECATED
+#endif
+
 /**
  * \brief          Initialize DES context
  *
@@ -89,7 +105,7 @@ mbedtls_des3_context;
  *                 security risk. We recommend considering stronger ciphers
  *                 instead.
  */
-void mbedtls_des_init( mbedtls_des_context *ctx );
+MBEDTLS_DEPRECATED void mbedtls_des_init( mbedtls_des_context *ctx );
 
 /**
  * \brief          Clear DES context
@@ -100,21 +116,68 @@ void mbedtls_des_init( mbedtls_des_context *ctx );
  *                 security risk. We recommend considering stronger ciphers
  *                 instead.
  */
-void mbedtls_des_free( mbedtls_des_context *ctx );
+MBEDTLS_DEPRECATED void mbedtls_des_free( mbedtls_des_context *ctx );
 
 /**
  * \brief          Initialize Triple-DES context
  *
  * \param ctx      DES3 context to be initialized
  */
-void mbedtls_des3_init( mbedtls_des3_context *ctx );
+MBEDTLS_DEPRECATED void mbedtls_des3_init( mbedtls_des3_context *ctx );
 
 /**
  * \brief          Clear Triple-DES context
  *
  * \param ctx      DES3 context to be cleared
  */
-void mbedtls_des3_free( mbedtls_des3_context *ctx );
+MBEDTLS_DEPRECATED void mbedtls_des3_free( mbedtls_des3_context *ctx );
+
+#undef MBEDTLS_DEPRECATED
+#endif /* !MBEDTLS_DEPRECATED_REMOVED */
+
+/**
+ * \brief          Initialize DES context
+ *
+ * \param ctx      DES context to be initialized
+ *
+ * \return         0 if succeeded.
+ *
+ * \warning        DES is considered a weak cipher and its use constitutes a
+ *                 security risk. We recommend considering stronger ciphers
+ *                 instead.
+ */
+int mbedtls_des_init_ret( mbedtls_des_context *ctx );
+
+/**
+ * \brief          Clear DES context
+ *
+ * \param ctx      DES context to be cleared
+ *
+ * \return         0 if succeeded.
+ *
+ * \warning        DES is considered a weak cipher and its use constitutes a
+ *                 security risk. We recommend considering stronger ciphers
+ *                 instead.
+ */
+int mbedtls_des_free_ret( mbedtls_des_context *ctx );
+
+/**
+ * \brief          Initialize Triple-DES context
+ *
+ * \param ctx      DES3 context to be initialized
+ *
+ * \return         0 if succeeded.
+ */
+int mbedtls_des3_init_ret( mbedtls_des3_context *ctx );
+
+/**
+ * \brief          Clear Triple-DES context
+ *
+ * \param ctx      DES3 context to be cleared
+ *
+ * \return         0 if succeeded.
+ */
+int mbedtls_des3_free_ret( mbedtls_des3_context *ctx );
 
 /**
  * \brief          Set key parity on the given key to odd.
