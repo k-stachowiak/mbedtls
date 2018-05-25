@@ -32,7 +32,7 @@
 
 #if defined( MBEDTLS_CHECK_PARAMS )
 #define MBEDTLS_PADLOCK_VALIDATE( cond )   do { if( !(cond) ) \
-                                               return( MBEDTLS_ERR_PADLOCK_BAD_INPUT_DATA ); \
+                                               return( MBEDTLS_ERR_PADLOCK_BAD_INPUT ); \
                                            } while( 0 )
 #else
 #define MBEDTLS_PADLOCK_VALIDATE( cond )
