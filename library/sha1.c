@@ -323,7 +323,7 @@ int mbedtls_sha1_update_ret( mbedtls_sha1_context *ctx,
     size_t fill;
     uint32_t left;
 
-    MBEDTLS_SHA1_VALIDATE( ctx != NULL && (input != NULL || ilen == 0) );
+    MBEDTLS_SHA1_VALIDATE( ctx != NULL && ( input != NULL || ilen == 0 ) );
 
     if( ilen == 0 )
         return( 0 );

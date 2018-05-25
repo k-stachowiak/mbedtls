@@ -41,7 +41,7 @@
 #include <stdint.h>
 
 #define MBEDTLS_ERR_SHA1_HW_ACCEL_FAILED                  -0x0035  /**< SHA-1 hardware accelerator failed */
-#define MBEDTLS_ERR_SHA1_BAD_INPUT_DATA                   -0x004b  /**< Input invalid. */
+#define MBEDTLS_ERR_SHA1_BAD_INPUT_DATA                   -0x004B  /**< Input invalid. */
 
 #if defined( MBEDTLS_CHECK_PARAMS )
 #define MBEDTLS_SHA1_VALIDATE( cond )   do { if( !(cond) ) \
