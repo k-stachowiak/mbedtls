@@ -300,6 +300,7 @@ exit:
     mbedtls_printf( "  + Press Enter to exit this program.\n" );
     fflush( stdout ); getchar();
 #endif
+
     return( exit_code );
 }
 #endif /* MBEDTLS_BASE64_C && MBEDTLS_FS_IO */
