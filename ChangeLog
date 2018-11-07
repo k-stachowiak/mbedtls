@@ -62,9 +62,9 @@ Changes
      mbedtls_ssl_get_record_expansion() in case of ChachaPoly ciphersuites,
      or CBC ciphersuites in (D)TLS versions 1.1 or higher. Fixes #1913, #1914.
    * Add support for buffering of out-of-order handshake messages.
-   * Add calls to platform setup and teardown functions to all the example
-     programs for which this is relevant. This change enables the utilization
-     of platform-specific cryptographic features in example programs.
+   * Add to the example programs calls to platform initialisation and teardown
+     functions, which can be optionally used by platform specific code for
+     initialisation.
 
 INTERNAL NOTE: need to bump soversion of libmbedtls:
 - added new member 'mtu' to public 'mbedtls_ssl_conf' structure
