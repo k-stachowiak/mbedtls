@@ -63,7 +63,7 @@ Changes
      or CBC ciphersuites in (D)TLS versions 1.1 or higher. Fixes #1913, #1914.
    * Add support for buffering of out-of-order handshake messages.
    * Add to the example programs calls to platform initialisation and teardown
-     functions, which can be optionally used by platform specific code for
+     functions, which can be optionally implemented by platform specific code for
      initialisation.
 
 INTERNAL NOTE: need to bump soversion of libmbedtls:
