@@ -103,6 +103,9 @@ endif
 
 check: lib tests
 	$(MAKE) -C tests check
+ifdef USE_CRYPTO_SUBMODULE
+	$(MAKE) -C crypto test
+endif
 
 test: check
 
